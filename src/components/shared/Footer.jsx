@@ -1,9 +1,11 @@
-const Footer = () => {
+function Footer() {
   return (
-    <footer className="bg-dark text-light text-center py-3">
-      <p className="mb-0">&copy; {new Date().getFullYear()} Arándano</p>
+    <footer className="bg-dark text-white text-center py-2">
+      <small>
+        © {new Date().getFullYear()} La Martina - Arándano - Ignacio LP
+      </small>
     </footer>
   );
-};
+}
 
 export default Footer;

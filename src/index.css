@@ -1,8 +1,250 @@
+/* Estilos globales de Arándano.
+   Copiados del Tablero de control La Martina (TableroFront/src/index.css) para
+   que las dos aplicaciones se lean igual. Si se cambia algo acá, ver si
+   también va en el Tablero. Convenciones: docs/formato-tablas.md y
+   docs/formato-sweetalert.md. */
+
+/* ── Layout principal ── */
 #root {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+}
+
+.app-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.layout-right {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
+
 main {
-  flex-grow: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Un botón deshabilitado muestra igual su aviso y el cursor de prohibido. */
+.btn:disabled {
+  pointer-events: auto;
+  cursor: not-allowed;
+}
+
+/* ── Cuadros / secciones ── */
+.cuadro {
+  border: 2px solid #333 !important;
+  border-radius: 6px;
+}
+
+/* ── Tabla ── */
+.table {
+  border: 2px solid #444 !important;
+}
+.table th,
+.table td {
+  border-left: 1.5px solid #555 !important;
+  border-right: 1.5px solid #555 !important;
+  border-top: 2.5px solid #444 !important;
+  border-bottom: 2.5px solid #444 !important;
+}
+.table thead th {
+  border-color: #444 !important;
+}
+
+/* ── Tablas de informe (la de todas las pantallas) ──
+   Filas finas y en cebra. */
+.tabla-informe {
+  border: 1px solid #cbd5e1 !important;
+}
+.tabla-informe th,
+.tabla-informe td {
+  border: 1px solid #e2e8f0 !important;
+  padding: 2px 5px;
+}
+/* Una columna que se separa de las vecinas con líneas más fuertes. */
+.tabla-informe th.col-bordes-fuertes,
+.tabla-informe td.col-bordes-fuertes {
+  border-left: 2px solid #475569 !important;
+  border-right: 2px solid #475569 !important;
+}
+/* La línea negra que corta antes de los totales. */
+.tabla-informe th.col-corte,
+.tabla-informe td.col-corte {
+  border-left: 2px solid #000 !important;
+}
+/* La línea negra fina abajo de una fila que cierra un grupo. */
+.tabla-informe tr.fila-fin-grupo > td {
+  border-bottom: 1px solid #000 !important;
+}
+.tabla-informe tbody tr:nth-of-type(even) > td {
+  background-color: #f1f5f4;
+}
+.tabla-informe tbody tr:hover:not(.fila-total) > td {
+  background-color: #dcefe4;
+}
+.tabla-informe tbody tr.fila-total > td {
+  background-color: #e8f5ee;
+  border-top: 2px solid #1b4332 !important;
+}
+/* Lo provisorio / por completar, en ámbar. Va después de la cebra. */
+.tabla-informe tbody tr.fila-provisoria > td {
+  background-color: #fef3c7;
+}
+/* Va después de la cebra: la fila que se está editando manda. */
+.tabla-informe tbody tr.fila-editando > td {
+  background-color: #e0f2fe;
+}
+
+/* ── Radio buttons ── */
+input[type="radio"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #333 !important;
+  accent-color: #2c2c2c;
+  cursor: pointer;
+}
+
+/* ── Ocultar flechas inputs number ── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ── Inputs ── */
+.form-control,
+.form-select {
+  border: 2px solid #aaa !important;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #4a6fa5 !important;
+  box-shadow: 0 0 0 0.2rem rgba(74, 111, 165, 0.2) !important;
+}
+.form-select {
+  text-align-last: center;
+  text-align: center;
+}
+.form-select option {
+  text-align: center;
+}
+
+/* ── Hover global de botones ── */
+.btn, button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover, button:hover {
+  transform: scale(1.06);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.35);
+}
+
+/* Los botones de las barras de filtros no se agrandan (la barra scrollea de
+   costado y el zoom la hacía temblar). */
+.sin-zoom:hover {
+  transform: none !important;
+}
+
+/* Prevenir saltos de layout y trabas en el scroll de las tablas */
+.table button:hover,
+.table .btn:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Tarjetas de menú (pantallas de inicio) ── */
+.seccion-inicio {
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.seccion-inicio:hover {
+  filter: brightness(0.82);
+  transform: scale(1.015);
+  z-index: 1;
+}
+
+/* ── Estilos globales SweetAlert2 (Bordes Redondeados & Compactos) ── */
+.swal2-popup {
+  border-radius: 18px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 1.25rem 1.5rem !important;
+}
+
+.swal2-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+}
+
+.swal2-html-container {
+  font-size: 0.88rem !important;
+  color: #64748b !important;
+}
+
+.swal2-confirm,
+.swal2-cancel {
+  border-radius: 10px !important;
+  font-size: 0.84rem !important;
+  padding: 0.45rem 1.1rem !important;
+  font-weight: 500 !important;
+}
+
+.swal2-icon {
+  transform: scale(0.85);
+  margin: 0.8rem auto 0.5rem auto !important;
+}
+
+/* ── Filtros con valor seleccionado en negrita y color rojo ── */
+select.form-select.fw-bold,
+input.form-control.fw-bold,
+select.form-select.filtro-activo,
+input.form-control.filtro-activo,
+.filtro-activo {
+  font-weight: 700 !important;
+  color: #dc2626 !important;
+}
+
+select.form-select.fw-bold option:checked,
+select.form-select.filtro-activo option:checked {
+  font-weight: 700 !important;
+  color: #dc2626 !important;
+}
+
+/* ── Cruz de cierre en modales con fondo oscuro ── */
+.modal-header .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%) !important;
+  opacity: 0.85 !important;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 1 !important;
+  transform: scale(1.1);
+}
+
+/* Placeholders más chicos y en gris claro: que no se confundan con los
+   títulos de los campos. */
+.form-placeholder-suave .form-control::placeholder {
+  color: #a0aec0;
+  font-size: 0.78rem;
+  opacity: 1;
+}
+.form-placeholder-suave .form-select.select-vacio {
+  color: #a0aec0;
+  font-size: 0.78rem;
+}
+.form-placeholder-suave .form-select.select-vacio option {
+  color: #212529;
+  font-size: 0.875rem;
 }
